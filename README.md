@@ -1,3 +1,3 @@
-# BART-in-HLMs
+# Bayes in CCREMs
 
-Codes for BART in HLMs
+Codes and data for Bayes in CCREMs
