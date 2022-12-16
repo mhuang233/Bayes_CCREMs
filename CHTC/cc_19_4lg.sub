@@ -1,0 +1,24 @@
+universe = docker
+docker_image = mhuang233/ccrem:v0
+
+executable = cc_19_4lg.sh
+arguments = $(n_iter) $(n_rep) $(ni) $(nj) $(gb)
+
+output = /home/mhuang233/ccrem_carolyn_19/$(n_iter)_$(n_rep)_$(ni)$(nj)_$(Cluster).out
+log = /home/mhuang233/ccrem_carolyn_19/$(n_iter)_$(n_rep)_$(ni)$(nj)_$(Cluster).log
+error = /home/mhuang233/ccrem_carolyn_19/$(n_iter)_$(n_rep)_$(ni)$(nj)_$(Cluster).err
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = ALL4_LOGIT.R
+
+# IMPORTANT! Require execute servers that can access /staging
+Requirements = (Target.HasCHTCStaging == true)
+
+
+request_cpus = 20
+request_memory = $(gb) GB
+request_disk = $(gb) GB
+
+
+queue n_iter,n_rep,ni,nj,gb from ccrem4.txt
